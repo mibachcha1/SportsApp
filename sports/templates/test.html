@@ -45,10 +45,12 @@
                                 <!-- <h5>Score</h5> -->
                                 <a href="https://google.com/" class="stretched-link"></a>
                             </div>
-                            <div class="col-12 text-center mt-4">
-                                <h5>Current Game Time:</h5>
-                                <h1 id="game-time" class="display-4 my-3">00:00</h1>
-                            </div>
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-4 text-center">
+                                  <h5>Game Time:</h5>
+                                  <p id="game-time" class="lead">00:00 - 1st Quarter</p>
+                                </div>
+                              </div>
                             {% endif %}
                             {% endfor %}
                         </div>
@@ -61,6 +63,38 @@
     </div>
 </div>
 
+<!-- <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>Scoreboard</h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 text-center">
+                <img src="team-a-logo.png" alt="Team A Logo" class="img-fluid img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                <h5 class="mt-3">Team A</h5>
+                <h1 id="team-a-score" class="display-4 my-4">0</h1>
+              </div>
+              <div class="col-6 text-center">
+                <img src="team-b-logo.png" alt="Team B Logo" class="img-fluid img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                <h5 class="mt-3">Team B</h5>
+                <h1 id="team-b-score" class="display-4 my-4">0</h1>
+              </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+              <div class="col-4 text-center">
+                <h5>Game Time:</h5>
+                <p id="game-time" class="lead">00:00 - 1st Quarter</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
 
     <script>
     $(document).ready(function() {
@@ -71,8 +105,6 @@
 	            success: function(data) {
 	                var latest_score = data.scoreboard.games;
 
-                    console.log(latest_score[0].gameStatusText);
-
                     for (var key in latest_score) {
                         if (latest_score.hasOwnProperty(key)) {
                             var game_id = latest_score[key].gameId;
@@ -81,29 +113,21 @@
 
                             var home_team_score = latest_score[key].homeTeam.score
                             var away_team_score = latest_score[key].awayTeam.score
+                            var status = latest_score[key].gameStatusText;
 
                             var home_str = "#" + home_team_id + "-score"
                             var away_str = "#" + away_team_id + "-score"
 
                             $(home_str).text(home_team_score);
                             $(away_str).text(away_team_score);
-                            // console.log();
-                            // console.log();
+                            $("#game-time").text(status);
                         }
                     }
-
-
-
-                    $("#home-team").text(home_team);
-                    $("#away-team").text(away_team);
-
-
-                    $("#away-team-score").text(away_team_score);
 	            }
 	        });
 	    }
 
-	    // Call updateScore function every 10 seconds
+	    // Call updateScore function every 5 seconds
         updateScore()
 	    setInterval(updateScore, 5000);
 	});

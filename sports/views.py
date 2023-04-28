@@ -8,6 +8,9 @@ import requests
 def index(request):
     return render(request, 'index.html')
 
+def play_by_play(request):
+    return render(request, 'playbyplay.html')
+
 def test(request):
     games = scoreboard.ScoreBoard()
     all_games = edict(games.get_dict())
