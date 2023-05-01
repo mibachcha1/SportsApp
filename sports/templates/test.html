@@ -1,10 +1,12 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Sports Scores</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
@@ -12,30 +14,141 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
     integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .navbar-dark .nav-item .nav-link {
+        color: #fff;
+    }
+
+    .navbar-dark .nav-item .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        border-radius: 0.25rem;
+        color: #fff;
+    }
+
+    .fa-li {
+        position: relative;
+        left: 0;
+    }
+</style>
 </head>
 
 <body>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Container wrapper -->
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="/"><img id="MDB-logo"
+                        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+                        alt="MDB Logo" draggable="false" height="30" /></a>
 
-  {% for key, value in games.items %}
-  {% if key == id %}
-  <p1>{{ value.home.teamName }}</p1>
-  <p1>{{ value.away.teamName }}</p1>
-  {% endif %}
-  {% endfor %}
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-3">
+                        <li class="nav-item">
+                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
+                                    class="fa fa-bars pe-2"></i>Menu</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+
+                    <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
+                        <div class="input-group">
+                            <button class="btn btn-light dropdown-toggle shadow-0" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false" style="padding-bottom: 0.4rem;">
+                                All
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark fa-ul">
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-search"></i></span>All</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-film"></i></span>Titles</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-tv"></i></span>TV
+                                        Episodes</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-users"></i></span>Celebs</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-building"></i></span>Companies</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-key"></i></span>Keywords</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                                                class="fa fa-search-plus"></i></span>Advanced
+                                        search<i class="fa fa-chevron-right ps-2"></i></a>
+                                </li>
+                            </ul>
+                            <input name = "prompt" type="search" class="form-control" placeholder="Search" aria-label="Search" />
+                        </div>
+                        <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
+                    </form>
+
+                    <ul class="navbar-nav ms-3">
+                        <li class="nav-item me-3">
+                            <a class="nav-link d-flex align-items-center" href="/schedule">
+                                <i class="fa fa-calendar pe-2"></i> Schedule
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center me-3" href="#!">
+                                <i class="fa fa-heart pe-2"></i> Favorites
+                            </a>
+                        </li>
+                        <li class="nav-item" style="width: 65px;">
+                            <a class="nav-link d-flex align-items-center" href="#!">
+                                <i class="fa fa-user pe-2"></i>Login
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </div>
 
   <div class="row" style="padding: 50px;">
-    <div class="container-fluid">
+    {% for id in ids %}
+    {% for key, value in games.items %}
+    {% if key == id %}
+    <div class="container-fluid" style="padding-bottom: 20px;">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card">
             <div class="card-header text-center">
               <h4>Scoreboard</h4>
             </div>
-            {% for id in ids %}
             <div class="card-body">
               <div class="row mb-3">
-                {% for key, value in games.items %}
-                {% if key == id %}
                 <div class="col-5 text-center">
                   <img src="https://cdn.nba.com/logos/nba/{{value.home.teamId}}/primary/L/logo.svg"
                     alt="{{value.home.teamName}}" class="img-fluid img-thumbnail"
@@ -48,13 +161,12 @@
                 </div>
                 <div class="col-2 text-center d-flex flex-column justify-content-center align-items-center">
                   <!-- Game clock and period -->
-                  <h1 style="font-size: 36px; font-weight: bold;" id="gameclock" class="display-4"></h1>
-                  <p style="font-size: 14px;" id="period" class="display-4"></p>
+                  <h1 style="font-size: 30px; font-weight: bold;" id="gameclock-{{id}}" class="display-4"></h1>
+                  <p style="font-size: 14px;" id="period-{{id}}" class="display-4"></p>
                   <br>
                   <br>
-                  <u><h1 style="font-size: 20px; font-weight: bold;" id="series" class="display-4">{{series}}</h1></u>
+                  <u><h1 style="font-size: 20px; font-weight: bold;" id="series-{{id}}" class="display-4">{{series}}</h1></u>
                 </div>
-
                 <div class="col-5 text-center">
                   <img src="https://cdn.nba.com/logos/nba/{{value.away.teamId}}/primary/L/logo.svg"
                     alt="{{value.away.teamName}}" class="img-fluid img-thumbnail"
@@ -72,16 +184,15 @@
                     <p id="game-time" class="lead"></p>
                   </div>
                 </div> -->
-                {% endif %}
-                {% endfor %}
               </div>
             </div>
-            <br>
-            {% endfor %}
           </div>
         </div>
       </div>
     </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
   </div>
 
   <!-- <div class="container">
@@ -116,24 +227,29 @@
     </div>
   </div> -->
 
-
+  <!-- <script src="/static/nav.js"></script> -->
   <script>
     function runCode() {
-      const targetTime = new Date();
-      hours = targetTime.getHours();
+      var hours = 25;
+      current_hours = new Date().getHours();
       $(document).ready(function () {
         function updateScore() {
           $.ajax({
             url: "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
             type: "GET",
             success: function (data) {
+              console.log("running");
               var latest_score = data.scoreboard.games;
-              console.log(latest_score)
+
               for (var key in latest_score) {
                 if (latest_score.hasOwnProperty(key)) {
+                  var test = latest_score[key].gameEt
+
                   var game_id = latest_score[key].gameId;
                   var home_team_id = latest_score[key].homeTeam.teamId
                   var away_team_id = latest_score[key].awayTeam.teamId
+
+                  hours = Math.min(hours,parseInt(test.substring(test.indexOf("T") + 1, test.indexOf("T") + 3)))
 
                   var home_team_score = latest_score[key].homeTeam.score
                   var away_team_score = latest_score[key].awayTeam.score
@@ -141,27 +257,25 @@
 
                   var home_str = "#" + home_team_id + "-score"
                   var away_str = "#" + away_team_id + "-score"
-
+                  var series = "#series-" + game_id
                   $(home_str).text(home_team_score);
                   $(away_str).text(away_team_score);
                   $(series).text(latest_score[key].seriesText);
-                  $("#gameclock").text(status);
+
+                  var statusHome = "#gameclock-" + game_id;
+
+                  $(statusHome).text(status);
                 }
               }
             }
           });
         }
-
-        // Call updateScore function every 5 seconds
         updateScore()
-        if (hours >= 18 && hours <= 21) {
-          setInterval(updateScore, 5000);
-        }
+        setInterval(updateScore, 1000);
       });
     }
-
-
     runCode()
+
 
   </script>
 </body>
