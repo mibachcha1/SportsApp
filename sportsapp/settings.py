@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login/'
 
 # Application definition
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sports',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'sportsapp.wsgi.application'
+ASGI_APPLICATION = 'sportsapp.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default' : {
+        'BACKEND' : 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database

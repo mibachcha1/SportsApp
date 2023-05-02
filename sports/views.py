@@ -3,11 +3,26 @@ from nba_api.live.nba.endpoints import scoreboard
 from easydict import EasyDict as edict
 from django.shortcuts import redirect, render
 import requests
-import urllib3
 from datetime import datetime
 from collections import OrderedDict
-
+from .models import *
+from .forms import SignUpForm
+from django.contrib.auth import login
 # Create your views here.
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+
+            return(redirect('home'))
+    else:
+        form = SignUpForm()
+
+    return render(request,"signup.html",{'form' : form})
 
 def index(request):
     games = scoreboard.ScoreBoard()
@@ -115,3 +130,13 @@ def search(request):
     print(search_prompt)
 
     return redirect(reverse('home'))
+
+def rooms(request):
+    rooms = Room.objects.all()
+
+    return render(request, 'rooms.html', {'rooms' : rooms})
+
+def room(request,slug):
+    room = Room.objects.get(slug=slug)
+
+    return render(request, 'room.html', {'room' : room})
