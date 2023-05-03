@@ -251,7 +251,7 @@
             $(document).ready(function () {
                 function updateScore() {
                     $.ajax({
-                        url: "https://cors-anywhere.herokuapp.com/https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
+                        url: "http://localhost:8080/https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
                         type: "GET",
                         dataType: 'json',
                         success: function (data) {
