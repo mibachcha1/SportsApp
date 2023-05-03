@@ -5,7 +5,7 @@ from . import views
 from . import routing
 
 urlpatterns = [
-    #path("test/", views.test, name="test"),
+    path("test/", views.test, name="test"),
     path('signup/', views.signup,name='signup'),
     path("schedule/", views.schedule, name="schedule"),
     path("search/", views.search, name="search"),

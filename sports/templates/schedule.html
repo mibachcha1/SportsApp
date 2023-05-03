@@ -176,8 +176,8 @@
                             <h5 class="mt-3">{{g.gameStatusText}}</h5>
                             <hr>
                         </div>
-                        {%if g.gameStatus > 1 %}
-                        <a href="/play-by-play/?id={{g.gameId}}" class="stretched-link"></a>
+                        {%if g.gameStatus == 2 %}
+                            <a href="/play-by-play/?id={{g.gameId}}" class="stretched-link"></a>
                         {%endif%}
                     </div>
                 </div>
@@ -204,6 +204,7 @@
                                 alt="{{value.homeTeam.teamName}}" class="img-fluid img-thumbnail"
                                 style="max-width: 150px; max-height: 150px;">
                             <h5 class="mt-3">{{g.homeTeam.teamName}}</h5>
+                            <h3 class="mt-3" id="homeseries">{{g.homeTeam.score}}</h3>
                             <h5 class="mt-3" id="homeseries">({{g.homeTeam.wins}} - {{g.homeTeam.losses}})</h5>
                             <hr>
                         </div>
@@ -216,7 +217,7 @@
                                 alt="{{value.awayTeam.teamName}}" class="img-fluid img-thumbnail"
                                 style="max-width: 150px; max-height: 150px;">
                             <h5 class="mt-3">{{g.awayTeam.teamName}}</h5>
-                            <h1 id="awayscore" class="display-4"><span id="{{value.away.teamId}}-score"></span></h1>
+                            <h3 class="mt-3" id="homeseries">{{g.awayTeam.score}}</h3>
                             <h5 class="mt-3" id="homeseries">({{g.awayTeam.wins}} - {{g.awayTeam.losses}})</h5>
                             <hr>
                         </div>
@@ -224,8 +225,8 @@
                             <h5 class="mt-3">{{g.gameStatusText}}</h5>
                             <hr>
                         </div>
-                        {%if g.gameStatus > 1 %}
-                        <a href="/play-by-play/?id={{g.gameId}}" class="stretched-link"></a>
+                        {%if g.gameStatusText == "Final"%}
+                            <a href="/boxscore/?id={{g.gameId}}" class="stretched-link"></a>
                         {%endif%}
                     </div>
                 </div>
