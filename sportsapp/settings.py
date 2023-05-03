@@ -115,6 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
