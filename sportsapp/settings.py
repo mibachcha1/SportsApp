@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sports',
     'channels',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
