@@ -550,13 +550,15 @@
       console.log("entered chat")
       const roomName = JSON.parse(document.getElementById('json_roomname').textContent)
       const username = JSON.parse(document.getElementById('json_username').textContent)
-      const chatSocket = new WebSocket(
-        'ws://'
+      var socket = 'ws://'
         + window.location.host
         + '/ws/'
         + roomName
-        + '/'
+        + '/';
+      const chatSocket = new WebSocket(
+        socket
       );
+      console.log(socket);
 
       chatSocket.onmessage = function (e) {
         console.log('onmessage');
