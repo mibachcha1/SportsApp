@@ -339,7 +339,7 @@
     $(document).ready(function () {
       function updateScore() {
         $.ajax({
-          url: 'https://cdn.nba.com/static/json/liveData/playbyplay/playbyplay_{{gameId}}.json', // replace with actual API endpoint
+          url: 'https://cors-anywhere.herokuapp.com/https://cdn.nba.com/static/json/liveData/playbyplay/playbyplay_{{gameId}}.json', // replace with actual API endpoint
           type: 'GET',
           dataType: 'json',
           success: function (response) {
@@ -445,7 +445,7 @@
     $(document).ready(function () {
       function getAllBefore() {
         $.ajax({
-          url: 'https://cdn.nba.com/static/json/liveData/playbyplay/playbyplay_{{gameId}}.json', // replace with actual API endpoint
+          url: 'https://your-cors-anywhere-server.com/https://cdn.nba.com/static/json/liveData/playbyplay/playbyplay_{{gameId}}.json', // replace with actual API endpoint
           type: 'GET',
           dataType: 'json',
           success: function (response) {

@@ -245,27 +245,16 @@
 
     <!-- <script src="/static/nav.js"></script> -->
     <script>
-        $(function () {
-            console.log("entered the function");
-            $("#scripts").load("/static/scripts.html");
-        });
-
         function runCode() {
-            $('#container').load('http://google.com'); // SERIOUSLY!
             var hours = 25;
             current_hours = new Date().getHours();
             $(document).ready(function () {
                 function updateScore() {
                     $.ajax({
                         url: "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
-                        headers: {
-                            'Access-Control-Allow-Origin': '*',
-                        },
                         type: "GET",
                         success: function (data) {
-                            console.log("running");
                             var latest_score = data.scoreboard.games;
-
                             for (var key in latest_score) {
                                 if (latest_score.hasOwnProperty(key)) {
                                     var test = latest_score[key].gameEt
@@ -295,7 +284,6 @@
                         }
                     });
                 }
-
                 updateScore()
                 setInterval(updateScore, 2000);
             });
