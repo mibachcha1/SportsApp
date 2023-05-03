@@ -6,7 +6,7 @@
   <title>Sports Scores</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
@@ -17,124 +17,123 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .navbar-dark .nav-item .nav-link {
-        color: #fff;
+      color: #fff;
     }
 
     .navbar-dark .nav-item .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-        border-radius: 0.25rem;
-        color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      border-radius: 0.25rem;
+      color: #fff;
     }
 
     .fa-li {
-        position: relative;
-        left: 0;
+      position: relative;
+      left: 0;
     }
-</style>
+  </style>
 </head>
 
 <body>
-    <!--Navigation bar-->
-    <div id="nav-placeholder">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- Container wrapper -->
-            <div class="container">
-                <!-- Navbar brand -->
-                <a class="navbar-brand" href="/"><img id="MDB-logo"
-                        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
-                        alt="MDB Logo" draggable="false" height="30" /></a>
+  <!--Navigation bar-->
+  <div id="nav-placeholder">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/"><img id="MDB-logo"
+            src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="MDB Logo"
+            draggable="false" height="30" /></a>
 
-                <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
 
-                <!-- Collapsible wrapper -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left links -->
-                    <ul class="navbar-nav me-3">
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
-                                    class="fa fa-bars pe-2"></i>Menu</a>
-                        </li>
-                    </ul>
-                    <!-- Left links -->
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left links -->
+          <ul class="navbar-nav me-3">
+            <li class="nav-item">
+              <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
+                  class="fa fa-bars pe-2"></i>Menu</a>
+            </li>
+          </ul>
+          <!-- Left links -->
 
-                    <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
-                        <div class="input-group">
-                            <button class="btn btn-light dropdown-toggle shadow-0" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="padding-bottom: 0.4rem;">
-                                All
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark fa-ul">
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search"></i></span>All</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-film"></i></span>Titles</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-tv"></i></span>TV
-                                        Episodes</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-users"></i></span>Celebs</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-building"></i></span>Companies</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-key"></i></span>Keywords</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search-plus"></i></span>Advanced
-                                        search<i class="fa fa-chevron-right ps-2"></i></a>
-                                </li>
-                            </ul>
-                            <input name = "prompt" type="search" class="form-control" placeholder="Search" aria-label="Search" />
-                        </div>
-                        <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
-                    </form>
-
-                    <ul class="navbar-nav ms-3">
-                        <li class="nav-item me-3">
-                            <a class="nav-link d-flex align-items-center" href="/schedule">
-                                <i class="fa fa-calendar pe-2"></i> Schedule
-
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center me-3" href="#!">
-                                <i class="fa fa-heart pe-2"></i> Favorites
-                            </a>
-                        </li>
-                        <li class="nav-item" style="width: 65px;">
-                            <a class="nav-link d-flex align-items-center" href="#!">
-                                <i class="fa fa-user pe-2"></i>Login
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Collapsible wrapper -->
+          <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
+            <div class="input-group">
+              <button class="btn btn-light dropdown-toggle shadow-0" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false" style="padding-bottom: 0.4rem;">
+                All
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark fa-ul">
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-search"></i></span>All</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-film"></i></span>Titles</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-tv"></i></span>TV
+                    Episodes</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                        class="fa fa-users"></i></span>Celebs</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                        class="fa fa-building"></i></span>Companies</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                        class="fa fa-key"></i></span>Keywords</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
+                        class="fa fa-search-plus"></i></span>Advanced
+                    search<i class="fa fa-chevron-right ps-2"></i></a>
+                </li>
+              </ul>
+              <input name="prompt" type="search" class="form-control" placeholder="Search" aria-label="Search" />
             </div>
-            <!-- Container wrapper -->
-        </nav>
-        <!-- Navbar -->
-    </div>
+            <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
+          </form>
+
+          <ul class="navbar-nav ms-3">
+            <li class="nav-item me-3">
+              <a class="nav-link d-flex align-items-center" href="/schedule">
+                <i class="fa fa-calendar pe-2"></i> Schedule
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-3" href="#!">
+                <i class="fa fa-heart pe-2"></i> Favorites
+              </a>
+            </li>
+            <li class="nav-item" style="width: 65px;">
+              <a class="nav-link d-flex align-items-center" href="#!">
+                <i class="fa fa-user pe-2"></i>Login
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+  </div>
+
+  <video data-html5-video="" preload="metadata"
+    src="blob:https://1stream.soccer/daefe886-3e2d-4e9f-a73d-297fecf0f8f0"></video>
 
   <div class="row" style="padding: 50px;">
     {% for id in ids %}
@@ -165,7 +164,9 @@
                   <p style="font-size: 14px;" id="period-{{id}}" class="display-4"></p>
                   <br>
                   <br>
-                  <u><h1 style="font-size: 20px; font-weight: bold;" id="series-{{id}}" class="display-4">{{series}}</h1></u>
+                  <u>
+                    <h1 style="font-size: 20px; font-weight: bold;" id="series-{{id}}" class="display-4">{{series}}</h1>
+                  </u>
                 </div>
                 <div class="col-5 text-center">
                   <img src="https://cdn.nba.com/logos/nba/{{value.away.teamId}}/primary/L/logo.svg"
@@ -249,7 +250,7 @@
                   var home_team_id = latest_score[key].homeTeam.teamId
                   var away_team_id = latest_score[key].awayTeam.teamId
 
-                  hours = Math.min(hours,parseInt(test.substring(test.indexOf("T") + 1, test.indexOf("T") + 3)))
+                  hours = Math.min(hours, parseInt(test.substring(test.indexOf("T") + 1, test.indexOf("T") + 3)))
 
                   var home_team_score = latest_score[key].homeTeam.score
                   var away_team_score = latest_score[key].awayTeam.score
@@ -275,6 +276,79 @@
       });
     }
     runCode()
+
+    $(document).ready(function () {
+      function getKey() {
+        var playerElement = document.getElementById("video-player");
+        $.ajax({
+          url: '/getsourcename?1105901=' + Math.round(Math.random() * 64),
+          type: 'post',
+          dataType: 'json',
+          data: {
+            eventId: "1105901",
+            "_token": "Ex6xAYbaxAXU1lV9POwe5fvCsN6BapaOz9ixlLT4",
+            sport: 'soccer'
+          },
+          success: function (data) {
+            var p2pConfig = {
+              announce: "https://us.web3-lab.com:8443/v1",
+              token: "jkCSRF-ng",
+              channelId: '9122',
+
+              // logLevel: 'debug',
+              sharePlaylist: true,
+              live: true,        // set to false in VOD mode
+              // announceLocation: 'hk',        // if using Hongkong tracker
+              announceLocation: 'us',        // if using USA tracker
+              // token: YOUR_TOKEN
+              // Other p2pConfig options provided by CDNBye
+            }
+
+            if (!P2pEngineHls.isMSESupported()) {
+              // use ServiceWorker based p2p engine if hls.js is not supported, need additional file sw.js
+              new P2pEngineHls.ServiceWorkerEngine(p2pConfig)
+            }
+            var player = new Clappr.Player(
+              {
+                source: window.atob(data.source),
+                autoPlay: false,
+                plugins: [LevelSelector, SwarmCloudClapprPlugin],
+                mediacontrol: { buttons: "#3994f3" },
+                mimeType: "application/x-mpegURL",
+                playback: {
+                  hlsjsConfig: {
+                    maxBufferSize: 0,       // Highly recommended setting in live mode
+                    maxBufferLength: 20,     // Highly recommended setting in live mode
+                    liveSyncDurationCount: 10,   // Highly recommended setting in live mode
+                    // Other hlsjsConfig options provided by hls.js
+                    p2pConfig
+                  }
+                }
+              });
+
+
+            player.attachTo(playerElement);
+
+            function resizePlayer() {
+              var aspectRatio = 9 / 16,
+                newWidth = document.getElementById('video-player').parentElement.offsetWidth,
+                newHeight = 2 * Math.round(newWidth * aspectRatio / 2);
+              player.resize({ width: newWidth, height: newHeight });
+            }
+
+            resizePlayer();
+            window.onresize = resizePlayer;
+          }
+
+        });
+
+      }
+
+      setTimeout(function () {
+        getKey()
+      }, 1)
+
+    })
 
 
   </script>
