@@ -253,6 +253,7 @@
                     $.ajax({
                         url: "https://cors-anywhere.herokuapp.com/https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json",
                         type: "GET",
+                        dataType: 'json',
                         success: function (data) {
                             var latest_score = data.scoreboard.games;
                             for (var key in latest_score) {
