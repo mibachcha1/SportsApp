@@ -172,7 +172,8 @@
                   }
                 </style>
 
-                <div class="card mb-3 news light-bg text-color" style="border: #282b30; border-width: 1px; border-style: groove;">
+                <div class="card mb-3 news light-bg text-color"
+                  style="border: #282b30; border-width: 1px; border-style: groove;">
                   <div class="row g-0">
                     <div class="col-md-4">
                     </div>
@@ -180,7 +181,8 @@
                       <div class="card-body">
                         <h5 class="card-title">{{n.0}}</h5>
                         <br>
-                        <p class="card-text" style="text-transform: uppercase;"><small class="text-color">Source: {{n.2}}</small></p>
+                        <p class="card-text" style="text-transform: uppercase;"><small class="text-color">Source:
+                            {{n.2}}</small></p>
                         <a href="{{n.1}}" class="stretched-link"></a>
                       </div>
                     </div>
@@ -377,27 +379,27 @@
               newPlayerImgDiv.classList.add("col-2");
 
               const newPlayerImg = document.createElement("img");
+              if (highest.actionType == "period") {
 
-              if (highest.actionType === "timeout") {
-                var image_str = "https://cdn.nba.com/logos/nba/" + highest.teamId + "/primary/L/logo.svg";
-                newPlayerImg.src = image_str;
-                newPlayerImg.alt = "Player";
-                newPlayerImg.classList.add("img-fluid", "img-thumbnail");
-                newPlayerImg.style.maxWidth = "75px";
-                newPlayerImg.style.maxHeight = "75px";
-                newPlayerImgDiv.appendChild(newPlayerImg);
-              } else if (highest.actionType == "period") {
-
-              }
-              else {
+              } else {
                 var image_str = "https://cdn.nba.com/headshots/nba/latest/260x190/" + playerId + ".png";
                 newPlayerImg.src = image_str;
                 newPlayerImg.alt = "Player";
                 newPlayerImg.classList.add("img-fluid", "img-thumbnail");
                 newPlayerImg.style.maxWidth = "75px";
                 newPlayerImg.style.maxHeight = "75px";
+
+                newPlayerImg.onerror = function () {
+                  console.log("error");
+                  this.src = "https://cdn.nba.com/logos/nba/" + highest.teamId + "/primary/L/logo.svg";
+                  newPlayerImg.alt = "Player";
+                  newPlayerImg.classList.add("img-fluid", "img-thumbnail");
+                  newPlayerImg.style.maxWidth = "75px";
+                  newPlayerImg.style.maxHeight = "75px";
+                };
                 newPlayerImgDiv.appendChild(newPlayerImg);
               }
+
 
               const newPlayDescDiv = document.createElement("div");
               newPlayDescDiv.classList.add("col-8");
@@ -469,25 +471,8 @@
 
               const newPlayerImg = document.createElement("img");
 
-              if (element.actionType === "timeout") {
-                var image_str = "https://cdn.nba.com/logos/nba/" + element.teamId + "/primary/L/logo.svg";
-                newPlayerImg.src = image_str;
-                newPlayerImg.alt = "Player";
-                newPlayerImg.classList.add("img-fluid", "img-thumbnail");
-                newPlayerImg.style.maxWidth = "75px";
-                newPlayerImg.style.maxHeight = "75px";
-                newPlayerImgDiv.appendChild(newPlayerImg);
-              } else if (element.actionType === "period" || element.actionType === "game") {
+              if (element.actionType == "period" || element.actionType == "game") {
 
-              }
-              else if (element.description.startsWith("TEAM")) {
-                var image_str = "https://cdn.nba.com/logos/nba/" + element.teamId + "/primary/L/logo.svg";
-                newPlayerImg.src = image_str;
-                newPlayerImg.alt = "Player";
-                newPlayerImg.classList.add("img-fluid", "img-thumbnail");
-                newPlayerImg.style.maxWidth = "75px";
-                newPlayerImg.style.maxHeight = "75px";
-                newPlayerImgDiv.appendChild(newPlayerImg);
               }
               else {
                 var image_str = "https://cdn.nba.com/headshots/nba/latest/260x190/" + playerId + ".png";
@@ -496,6 +481,13 @@
                 newPlayerImg.classList.add("img-fluid", "img-thumbnail");
                 newPlayerImg.style.maxWidth = "75px";
                 newPlayerImg.style.maxHeight = "75px";
+                newPlayerImg.onerror = function () {
+                  this.src = "https://cdn.nba.com/logos/nba/" + element.teamId + "/primary/L/logo.svg";
+                  newPlayerImg.alt = "Player";
+                  newPlayerImg.classList.add("img-fluid", "img-thumbnail");
+                  newPlayerImg.style.maxWidth = "75px";
+                  newPlayerImg.style.maxHeight = "75px";
+                };
                 newPlayerImgDiv.appendChild(newPlayerImg);
               }
 
