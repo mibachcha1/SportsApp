@@ -303,12 +303,14 @@
               </div>
               {%endfor%}
             </div>
+
             <div>
+              {% if request.user.is_authenticated %}
               <form method="post" action="." class="input-group mt-3">
-                <input id="chat-message-content" type="text" name="content" class="form-control light-bg text-color"
+                <input id="chat-message-content" type="text" name="content" class="form-control text-color"
                   placeholder="Type your message here...">
 
-                <div class="input-group-addon light-bg">
+                <div class="input-group-addon">
                   <button id="chat-message-submit" style="border: none; background-color: white;">
                     <span class="input-group-text">
                       <i class="fa fa-paper-plane"></i>
@@ -316,7 +318,14 @@
                   </button>
                 </div>
               </form>
+              {%else%}
+              <div class="d-flex justify-content-center mt-3">
+                <a href="/login" class="btn text-center"
+                  style="background-color: #E94560; color: white; font-weight: bold;">Sign In</a>
+              </div>
+              {%endif%}
             </div>
+
           </div>
         </div>
       </div>
@@ -560,10 +569,10 @@
           const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
           const formattedDateTime = now.toLocaleString('en-US', options);
 
-          let html = '<div class="message-card card">';
+          let html = '<div class="message-card card light-bg">';
           html += '<div class="card-body">';
           html += '<h5 class="card-title">' + data.username + '</h5>';
-          html += '<h6 class="card-subtitle mb-2 text-muted">' + formattedDateTime + '</h6>';
+          html += '<h6 class="card-subtitle mb-2">' + formattedDateTime + '</h6>';
           html += '<p class="card-text">' + data.message + '</p>';
           html += '</div>';
           html += '</div>';
