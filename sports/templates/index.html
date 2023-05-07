@@ -14,35 +14,41 @@
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <style>
         .navbar-dark .nav-item .nav-link {
-            color: #fff;
+            text-align:center;
+            color: white;
         }
 
         .navbar-dark .nav-item .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             border-radius: 0.25rem;
-            color: #fff;
+            color: white
         }
 
         .fa-li {
             position: relative;
             left: 0;
         }
+
+        .text-color{
+            color: white;
+        }
     </style>
 </head>
 
-<body>
+<body style="background-color: #282b30; font-family: 'Rubik', sans-serif;">
     <!--Navigation bar-->
     <div id="nav-placeholder">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #282b30;">
             <!-- Container wrapper -->
             <div class="container">
                 <!-- Navbar brand -->
                 <a class="navbar-brand" href="/"><img id="MDB-logo"
-                        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+                        src="/static/logo.png"
                         alt="MDB Logo" draggable="false" height="30" /></a>
 
                 <!-- Toggle button -->
@@ -54,60 +60,13 @@
 
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left links -->
-                    <ul class="navbar-nav me-3">
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
-                                    class="fa fa-bars pe-2"></i>Menu</a>
-                        </li>
-                    </ul>
-                    <!-- Left links -->
 
                     <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
                         <div class="input-group">
-                            <button class="btn btn-light dropdown-toggle shadow-0" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="padding-bottom: 0.4rem;">
-                                All
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark fa-ul">
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search"></i></span>All</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-film"></i></span>Titles</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-tv"></i></span>TV
-                                        Episodes</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-users"></i></span>Celebs</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-building"></i></span>Companies</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-key"></i></span>Keywords</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search-plus"></i></span>Advanced
-                                        search<i class="fa fa-chevron-right ps-2"></i></a>
-                                </li>
-                            </ul>
                             <input name="prompt" type="search" class="form-control" placeholder="Search"
                                 aria-label="Search" />
                         </div>
-                        <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
+                        <a href="#!" class="text-color"><i class="fa fa-search ps-3"></i></a>
                     </form>
 
                     <ul class="navbar-nav ms-3">
@@ -144,16 +103,18 @@
         <!-- Navbar -->
     </div>
 
-    <div class="row" style="padding: 50px;">
+    <hr class="text-color">
+    <div class="row" style="padding: 50px; padding-bottom: 20px;">
         {% for id in ids %}
         {% for key, value in games.items %}
         {% if key == id %}
-        <div class="container-fluid" style="padding-bottom: 20px;">
+        <div class="row-md-8" style="padding-bottom: 20px;">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header text-center">
+                    <div class="card" style="background-color: #36393e; border:#36393e; border-width:1px; border-style:groove;">
+                        <div class="card-header text-center text-color">
                             <h4>Scoreboard</h4>
+                            <hr class="text-color">
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
@@ -161,35 +122,35 @@
                                     <img src="https://cdn.nba.com/logos/nba/{{value.home.teamId}}/primary/L/logo.svg"
                                         alt="{{value.home.teamName}}" class="img-fluid img-thumbnail"
                                         style="max-width: 150px; max-height: 150px;">
-                                    <h5 class="mt-3">{{value.home.teamName}}</h5>
-                                    <h1 id="homescore" class="display-4"><span id="{{value.home.teamId}}-score"></span>
+                                    <h5 class="mt-3 text-color">{{value.home.teamName}}</h5>
+                                    <h1 id="homescore" class="display-4 text-color"><span id="{{value.home.teamId}}-score"></span>
                                     </h1>
-                                    <h5 class="mt-3" id="homeseries">({{value.home.wins}} - {{value.home.losses}})</h5>
-                                    <hr>
+                                    <h5 class="mt-3 text-color" id="homeseries">({{value.home.wins}} - {{value.home.losses}})</h5>
+                                    <hr class="text-color">
                                     <!-- <h5>Score</h5> -->
                                 </div>
                                 <div
                                     class="col-2 text-center d-flex flex-column justify-content-center align-items-center">
                                     <!-- Game clock and period -->
-                                    <h1 style="font-size: 30px; font-weight: bold;" id="gameclock-{{id}}"
-                                        class="display-4"></h1>
-                                    <p style="font-size: 14px;" id="period-{{id}}" class="display-4"></p>
+                                    <h1 style="font-size: 30px; font-weight: bold; overflow: auto; white-space: nowrap; text-transform: uppercase;" id="gameclock-{{id}}"
+                                        class="display-4 text-color"></h1>
+                                    <p style="font-size: 14px;" id="period-{{id}}" class="display-4 text-color"></p>
                                     <br>
                                     <br>
-                                    <u>
+                                    <u class="text-color">
                                         <h1 style="font-size: 20px; font-weight: bold;" id="series-{{id}}"
-                                            class="display-4">{{series}}</h1>
+                                            class="display-4 text-color">{{series}}</h1>
                                     </u>
                                 </div>
-                                <div class="col-5 text-center">
+                                <div class="col-5 text-center text-color">
                                     <img src="https://cdn.nba.com/logos/nba/{{value.away.teamId}}/primary/L/logo.svg"
                                         alt="{{value.away.teamName}}" class="img-fluid img-thumbnail"
                                         style="max-width: 150px; max-height: 150px;">
-                                    <h5 class="mt-3">{{value.away.teamName}}</h5>
-                                    <h1 id="awayscore" class="display-4"><span id="{{value.away.teamId}}-score"></span>
+                                    <h5 class="mt-3 text-color">{{value.away.teamName}}</h5>
+                                    <h1 id="awayscore" class="display-4 text-color"><span id="{{value.away.teamId}}-score"></span>
                                     </h1>
-                                    <h5 class="mt-3" id="homeseries">({{value.away.wins}} - {{value.away.losses}})</h5>
-                                    <hr>
+                                    <h5 class="mt-3 text-color" id="homeseries">({{value.away.wins}} - {{value.away.losses}})</h5>
+                                    <hr class="text-color">
                                     <!-- <h5>Score</h5> -->
                                     <a href="/play-by-play/?id={{id}}" class="stretched-link"></a>
                                 </div>

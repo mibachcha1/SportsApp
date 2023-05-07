@@ -1,3 +1,4 @@
+from multiprocessing.pool import ThreadPool
 from django.urls import reverse
 from nba_api.live.nba.endpoints import scoreboard
 from easydict import EasyDict as edict
@@ -157,10 +158,28 @@ def schedule(request):
 
     return render(request, 'schedule.html',context)
 
+def check_image_url(url):
+    response = requests.head(url)
+    return response.status_code == requests.codes.ok
+
 def search(request):
     search_prompt = request.GET.get("prompt")
-    print(search_prompt)
-    return redirect(reverse('home'))
+
+    from nba_api.stats.static import players
+    from nba_api.stats.static import teams
+
+    players_list = players.find_players_by_full_name(search_prompt)
+    #teams_list = teams.find_team_by_abbreviation(search_prompt)
+
+    teams_list = teams.find_teams_by_full_name(search_prompt)
+
+    sorted_players = sorted(players_list, key=lambda x: x['is_active'], reverse=True)
+
+    context = {"players" : sorted_players, "teams" : teams_list}
+
+    return render(request, 'results.html',context)
+
+
 
 def rooms(request):
     rooms = Room.objects.all()

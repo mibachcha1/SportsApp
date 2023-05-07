@@ -17,36 +17,58 @@
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+
     <style>
         .navbar-dark .nav-item .nav-link {
-            color: #fff;
+            text-align: center;
+            color: white;
         }
 
         .navbar-dark .nav-item .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             border-radius: 0.25rem;
-            color: #fff;
+            color: white
         }
 
         .fa-li {
             position: relative;
             left: 0;
         }
+
+        .text-color {
+            color: white;
+        }
+
+        .light-bg {
+            background-color: #36393e;
+        }
+
+        .dark-bg {
+            background-color: #282b30;
+        }
+
+        .ahover:hover{
+            transform: scale(1.05);
+            z-index: 1;
+        }
     </style>
 </head>
 
-<body>
+<!-- lighter: 36393e -->
+<!-- darker: 282b30  -->
+
+<body style="background-color: #282b30; font-family: 'Rubik', sans-serif;">
     <!--Navigation bar-->
     <div id="nav-placeholder">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #282b30;">
             <!-- Container wrapper -->
             <div class="container">
                 <!-- Navbar brand -->
-                <a class="navbar-brand" href="/"><img id="MDB-logo"
-                        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
-                        alt="MDB Logo" draggable="false" height="30" /></a>
+                <a class="navbar-brand" href="/"><img id="MDB-logo" src="/static/logo.png" alt="MDB Logo"
+                        draggable="false" height="30" /></a>
 
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -57,67 +79,19 @@
 
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left links -->
-                    <ul class="navbar-nav me-3">
-                        <li class="nav-item">
-                            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
-                                    class="fa fa-bars pe-2"></i>Menu</a>
-                        </li>
-                    </ul>
-                    <!-- Left links -->
 
                     <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
                         <div class="input-group">
-                            <button class="btn btn-light dropdown-toggle shadow-0" type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false" style="padding-bottom: 0.4rem;">
-                                All
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark fa-ul">
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search"></i></span>All</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-film"></i></span>Titles</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-tv"></i></span>TV
-                                        Episodes</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-users"></i></span>Celebs</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-building"></i></span>Companies</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-key"></i></span>Keywords</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                                                class="fa fa-search-plus"></i></span>Advanced
-                                        search<i class="fa fa-chevron-right ps-2"></i></a>
-                                </li>
-                            </ul>
                             <input name="prompt" type="search" class="form-control" placeholder="Search"
                                 aria-label="Search" />
                         </div>
-                        <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
+                        <a href="#!" class="text-color"><i class="fa fa-search ps-3"></i></a>
                     </form>
 
                     <ul class="navbar-nav ms-3">
                         <li class="nav-item me-3">
                             <a class="nav-link d-flex align-items-center" href="/schedule">
                                 <i class="fa fa-calendar pe-2"></i> Schedule
-
                             </a>
                         </li>
                         <li class="nav-item">
@@ -125,11 +99,20 @@
                                 <i class="fa fa-heart pe-2"></i> Favorites
                             </a>
                         </li>
-                        <li class="nav-item" style="width: 65px;">
-                            <a class="nav-link d-flex align-items-center" href="#!">
-                                <i class="fa fa-user pe-2"></i>Login
+
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center me-3" href="/logout">
+                                <i class="fa fa-user pe-2"></i>Logout
                             </a>
                         </li>
+                        {%else%}
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center me-3" href="/login/">
+                                <i class="fa fa-user pe-2"></i>Login/Signup
+                            </a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- Collapsible wrapper -->
@@ -138,14 +121,16 @@
         </nav>
         <!-- Navbar -->
     </div>
+    <hr class="text-color">
 
-    <div class="row" style="padding: 50px; padding-bottom: 20px;">
+
+    <div class="row text-color" style="padding: 50px; padding-bottom: 20px;">
         <h1>Upcoming/Ongoing Games:</h1>
         <hr>
         {% for key, value in all_data.items %}
         {% for g in value %}
         <div class="col-md-3" style="padding-bottom: 20px;">
-            <div class="card ahover">
+            <div class="card light-bg ahover">
                 <div class="card-header text-center">
                     <h4>{{key}}</h4>
                 </div>
@@ -187,13 +172,13 @@
         {% endfor %}
     </div>
 
-    <div class="row" style="padding: 50px; padding-bottom: 20px;">
+    <div class="row text-color"  style="padding: 50px; padding-bottom: 20px;">
         <h1>Past Games:</h1>
         <hr>
         {% for key, value in past.items %}
         {% for g in value %}
         <div class="col-md-3" style="padding-bottom: 20px;">
-            <div class="card ahover">
+            <div class="card light-bg ahover">
                 <div class="card-header text-center">
                     <h4>{{key}}</h4>
                 </div>

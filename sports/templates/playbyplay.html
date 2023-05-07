@@ -16,36 +16,56 @@
     integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
   <style>
     .navbar-dark .nav-item .nav-link {
-      color: #fff;
+      text-align: center;
+      color: white;
     }
 
     .navbar-dark .nav-item .nav-link:hover {
       background-color: rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
       border-radius: 0.25rem;
-      color: #fff;
+      color: white
     }
 
     .fa-li {
       position: relative;
       left: 0;
     }
-  </style>
-</head>
 
-<body>
+    .text-color {
+      color: white;
+    }
+
+    .bg {
+      background-color: #36393e;
+    }
+
+    .light-bg {
+      background-color: #36393e;
+    }
+
+    .dark-bg {
+      background-color: #282b30;
+    }
+  </style>
+
+</head>
+<!-- lighter: 36393e -->
+<!-- darker: 282b30  -->
+
+<body style="background-color: #282b30; font-family: 'Rubik', sans-serif;">
   <!--Navigation bar-->
   <div id="nav-placeholder">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #282b30;">
       <!-- Container wrapper -->
       <div class="container">
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="/"><img id="MDB-logo"
-            src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="MDB Logo"
-            draggable="false" height="30" /></a>
+        <a class="navbar-brand" href="/"><img id="MDB-logo" src="/static/logo.png" alt="MDB Logo" draggable="false"
+            height="30" /></a>
 
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -55,63 +75,18 @@
 
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left links -->
-          <ul class="navbar-nav me-3">
-            <li class="nav-item">
-              <a class="nav-link active d-flex align-items-center" aria-current="page" href="#"><i
-                  class="fa fa-bars pe-2"></i>Menu</a>
-            </li>
-          </ul>
-          <!-- Left links -->
 
           <form action="{% url 'search' %}" method="get" class="d-flex align-items-center w-100 form-search">
             <div class="input-group">
-              <button class="btn btn-light dropdown-toggle shadow-0" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false" style="padding-bottom: 0.4rem;">
-                All
-              </button>
-              <ul class="dropdown-menu dropdown-menu-dark fa-ul">
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-search"></i></span>All</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-film"></i></span>Titles</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i class="fa fa-tv"></i></span>TV
-                    Episodes</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                        class="fa fa-users"></i></span>Celebs</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                        class="fa fa-building"></i></span>Companies</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                        class="fa fa-key"></i></span>Keywords</a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#"><span class="fa-li pe-2"><i
-                        class="fa fa-search-plus"></i></span>Advanced
-                    search<i class="fa fa-chevron-right ps-2"></i></a>
-                </li>
-              </ul>
               <input name="prompt" type="search" class="form-control" placeholder="Search" aria-label="Search" />
             </div>
-            <a href="#!" class="text-white"><i class="fa fa-search ps-3"></i></a>
+            <a href="#!" class="text-color"><i class="fa fa-search ps-3"></i></a>
           </form>
 
           <ul class="navbar-nav ms-3">
             <li class="nav-item me-3">
               <a class="nav-link d-flex align-items-center" href="/schedule">
                 <i class="fa fa-calendar pe-2"></i> Schedule
-
               </a>
             </li>
             <li class="nav-item">
@@ -119,11 +94,20 @@
                 <i class="fa fa-heart pe-2"></i> Favorites
               </a>
             </li>
-            <li class="nav-item" style="width: 65px;">
-              <a class="nav-link d-flex align-items-center" href="#!">
-                <i class="fa fa-user pe-2"></i>Login
+
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-3" href="/logout">
+                <i class="fa fa-user pe-2"></i>Logout
               </a>
             </li>
+            {%else%}
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-3" href="/login/">
+                <i class="fa fa-user pe-2"></i>Login/Signup
+              </a>
+            </li>
+            {% endif %}
           </ul>
         </div>
         <!-- Collapsible wrapper -->
@@ -132,16 +116,18 @@
     </nav>
     <!-- Navbar -->
   </div>
-
+  <hr class="text-color">
   <div class="row" style="padding: 50px;">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="card">
-            <div class="card-header text-center">
-              <h4>Play-by-Play</h4>
+          <div class="card" style="background-color: #36393e; border:#282b30; border-width:1px; border-style:groove;">
+
+            <div class="card-header text-center"
+              style="background-color: #36393e; border:#282b30; border-width:1px; border-style:groove;">
+              <h4 class="text-color">Play-by-Play</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body text-color">
               <div class="row mb-3">
                 <div class="col-5 text-center">
                   <img src="https://cdn.nba.com/logos/nba/{{homeTeamId}}/primary/L/logo.svg" alt="Team A Logo"
@@ -170,21 +156,23 @@
               </div>
 
               <div class="d-flex justify-content-center">
-                <a href="/boxscore/?id={{gameId}}" class="btn btn-primary text-center bg-dark border-dark">Boxscore</a>
+                <a href="/boxscore/?id={{gameId}}" class="btn text-center"
+                  style="background-color: #E94560; color: white; font-weight: bold;">Boxscore</a>
               </div>
               <hr>
               <div class="row">
-              {%if news %}
-                <h1>news</h1>
-              {%endif%}
-              {% for n in news %}
+                {%if news %}
+                <h1>News</h1>
+                {%endif%}
+                {% for n in news %}
                 <style>
                   .news:hover {
                     transform: translateY(-5px);
                     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
                   }
                 </style>
-                <div class="card mb-3 news">
+
+                <div class="card mb-3 news light-bg text-color" style="border: #282b30; border-width: 1px; border-style: groove;">
                   <div class="row g-0">
                     <div class="col-md-4">
                     </div>
@@ -192,7 +180,7 @@
                       <div class="card-body">
                         <h5 class="card-title">{{n.0}}</h5>
                         <br>
-                        <p class="card-text"><small class="text-muted">Source: {{n.2}}</small></p>
+                        <p class="card-text" style="text-transform: uppercase;"><small class="text-color">Source: {{n.2}}</small></p>
                         <a href="{{n.1}}" class="stretched-link"></a>
                       </div>
                     </div>
@@ -206,6 +194,7 @@
                     <li class="list-group-item">
                   </ul>
                 </div>
+
               </div>
             </div>
           </div>
@@ -215,21 +204,22 @@
   </div>
 
   <div class="position-fixed bottom-0 end-0 p-3">
-    <a onclick="scrollToBottom()" href="#" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-      data-bs-target="#exampleModal">
-      <i class=" fa fa-comments"></i>
+    <a onclick="scrollToBottom()" href="#" class="btn btn-lg text-color" style="background-color: #36393e;"
+      data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Chat <i class=" fa fa-comments text-color card-header"></i>
     </a>
   </div>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
+      <div class="modal-content dark-bg text-color" style="border:#282b30; border-width:1px; border-style:groove;">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Chat</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+
+        <div class="modal-body text-color">
           <style>
             .chat-container {
               max-width: 600px;
@@ -300,12 +290,12 @@
           </style>
 
           <div class="chat-container">
-            <div class="chat-box" id="chat-messages">
+            <div class="chat-box dark-bg" id="chat-messages">
               {% for message in messages %}
-              <div class="message-card card">
+              <div class="message-card card light-bg">
                 <div class="card-body">
                   <h5 class="card-title">{{message.user.username}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{message.date_added}}</h6>
+                  <h6 class="card-subtitle mb-2">{{message.date_added}}</h6>
                   <p class="card-text">{{message.content}}</p>
                 </div>
               </div>
@@ -313,10 +303,10 @@
             </div>
             <div>
               <form method="post" action="." class="input-group mt-3">
-                <input id="chat-message-content" type="text" name="content" class="form-control"
+                <input id="chat-message-content" type="text" name="content" class="form-control light-bg text-color"
                   placeholder="Type your message here...">
 
-                <div class="input-group-addon">
+                <div class="input-group-addon light-bg">
                   <button id="chat-message-submit" style="border: none; background-color: white;">
                     <span class="input-group-text">
                       <i class="fa fa-paper-plane"></i>
@@ -378,6 +368,7 @@
 
               const newListItem = document.createElement("li");
               newListItem.classList.add("list-group-item");
+              newListItem.classList.add("light-bg");
 
               const newRowDiv = document.createElement("div");
               newRowDiv.classList.add("row");
@@ -412,12 +403,15 @@
               newPlayDescDiv.classList.add("col-8");
 
               const newPlayDesc = document.createElement("p");
+              newPlayDesc.classList.add("text-color")
+              newPlayDesc.style.fontWeight = "bold";
               newPlayDesc.textContent = description;
 
               newPlayDescDiv.appendChild(newPlayDesc);
 
               const newTimeDiv = document.createElement("div");
               newTimeDiv.classList.add("col-2");
+              newTimeDiv.classList.add("text-color")
               newTimeDiv.textContent = "Q" + q + ": " + min + ":" + sec;
 
               newRowDiv.appendChild(newPlayerImgDiv);
@@ -465,6 +459,7 @@
 
               const newListItem = document.createElement("li");
               newListItem.classList.add("list-group-item");
+              newListItem.classList.add("bg");
 
               const newRowDiv = document.createElement("div");
               newRowDiv.classList.add("row");
@@ -508,12 +503,15 @@
               newPlayDescDiv.classList.add("col-8");
 
               const newPlayDesc = document.createElement("p");
+              newPlayDesc.classList.add("text-color")
+              newPlayDesc.style.fontWeight = "bold";
               newPlayDesc.textContent = description;
 
               newPlayDescDiv.appendChild(newPlayDesc);
 
               const newTimeDiv = document.createElement("div");
               newTimeDiv.classList.add("col-2");
+              newTimeDiv.classList.add("text-color")
               newTimeDiv.textContent = "Q" + q + ": " + min + ":" + sec;
 
               newRowDiv.appendChild(newPlayerImgDiv);

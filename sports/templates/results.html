@@ -1,21 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBA Boxscore</title>
+    <title>Schedule</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
 
     <style>
         .navbar-dark .nav-item .nav-link {
@@ -45,6 +47,11 @@
 
         .dark-bg {
             background-color: #282b30;
+        }
+
+        .ahover:hover{
+            transform: scale(1.05);
+            z-index: 1;
         }
     </style>
 </head>
@@ -116,52 +123,48 @@
     </div>
     <hr class="text-color">
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <div class="card light-bg text-color" style="border: #36393e; border-width: 1px; border-style: groove;">
-              <div class="card-header">
-                <h3>Signup</h3>
-              </div>
-              <div class="card-body">
-                <form method="post" action = ".">
-                    {% csrf_token %}
-                  <div class="form-group mb-3">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="username" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password1" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm-password" name="password2" required>
-                  </div>
-                  <br>
-                  <div class="form-group mb-3">
-                    <button type="submit" class="btn dark-bg text-color" style="background-color: #E94560; font-weight: bold;">Signup</button>
-                  </div>
 
-                  {% if form.errors %}
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="form-group mb-1">
-                                    <span id="error-message" class="text-danger">{{error | escape}}</span>
-                                  </div>
-                            </div>
-                        </div>
-                        {%endfor%}
-                    {%endfor%}
-                {%endif%}
-                </form>
-              </div>
+    <div class="row text-color" style="padding: 50px; padding-bottom: 20px;">
+        <h1>Players</h1>
+        <hr>
+        {%for player in players%}
+        <div class="col-md-3" style="padding-bottom: 20px;">
+            <div class="card light-bg ahover">
+                <div class="card-body">
+                    <img src="https://cdn.nba.com/headshots/nba/latest/260x190/{{ player.id }}.png"
+                    onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'; this.style.width='190px'; this.style.height='250px';this.style.position='relative'; this.style.bottom='0';"
+                    id="img-{{ player.id }}" class="card-img-top mx-auto d-block" alt="...">
+                    <hr>
+                    <div class="text-center text-color">
+                        <h5 class="mt-3">{{ player.full_name }}</h5>
+                        <hr>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+        {%endfor%}
+    </div>
 
-  </body>
-  </html>
+    <div class="row text-color" style="padding: 50px; padding-bottom: 20px;">
+        <h1>Teams</h1>
+        <hr>
+        {%for team in teams%}
+        <div class="col-md-3" style="padding-bottom: 20px;">
+            <div class="card light-bg ahover">
+                <div class="card-body">
+                    <img src="https://cdn.nba.com/logos/nba/{{team.id}}/primary/L/logo.svg"
+                    id="img-{{ player.id }}" class="card-img-top mx-auto d-block" alt="...">
+                    <hr>
+                    <div class="text-center text-color">
+                        <h5 class="mt-3">{{ team.nickname }}</h5>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+
+
+</body>
+</html>
