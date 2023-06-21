@@ -105,6 +105,12 @@
 
     <hr class="text-color">
     <div class="row" style="padding: 50px; padding-bottom: 20px;">
+        {%if not ids%}
+        <div class="card-header text-center text-color">
+            <h1>No Games Scheduled for Today</h1>
+            <h3>(2022-23 Season Has Ended)</h3>
+        </div>
+        {%endif%}
         {% for id in ids %}
         {% for key, value in games.items %}
         {% if key == id %}
